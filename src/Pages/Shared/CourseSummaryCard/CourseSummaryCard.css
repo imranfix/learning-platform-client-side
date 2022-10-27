@@ -1,0 +1,4 @@
+.card-gird{
+    display: grid;
+    grid-template-columns: repeat(1, 2fr);
+}

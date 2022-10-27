@@ -1,10 +1,9 @@
 import React from 'react';
 import { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { current } from 'daisyui/src/colors';
 
 
 export const AuthContext = createContext();
@@ -15,17 +14,27 @@ const auth = getAuth(app);
 
 
 const AuthProvider = ({children}) => {
-    const[user, setUser] = useState({});
+    const[user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+// signIn Google:
     const googleProvider = new GoogleAuthProvider();
 
+// password Authentification:
     const createUser = (email, password) =>{
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    // signIn function:
+    const providerLogin = (provider)=>{
+        setLoading(true);
+        return signInWithPopup(auth, provider);
+    }
+  
+
+    // signIn auth:
     const signIn = (email, password) =>{
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -34,25 +43,41 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, googleProvider);
     }
 
-    // logOut function:
+    // update profile:
+    const updateUserProfile = (profile) =>{
+        return updateProfile(auth.currentUser, profile);
+    }
+
+    // verify Email:
+    const verifyEmail = ()=>{
+        return sendEmailVerification(auth.currentUser);
+    }
+
+
+    // logOut auth:
     const logOut = () =>{
+        setLoading(true);
         return signOut(auth);
     }
 
     // useEffect why use?
     useEffect( () =>{
-        const unsubscribe = onAuthStateChanged(auth, currentUser =>{
-            setUser(currentUser);
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
+            console.log('user inside state change', currentUser);
+            if(currentUser === null || currentUser.emailVerified){
+                setUser(currentUser)
+
+            }
             setLoading(false);
-            console.log('auth changed', currentUser);
         })
+        
         return ()=>{
             unsubscribe();
         }
     }, [])
 
 
-    const authInfo = {user, loading, createUser, signIn, logOut, signInWithGoogle}
+    const authInfo = {user, loading, createUser, signIn, logOut,verifyEmail, updateUserProfile, setLoading , signInWithGoogle}
 
 
 
