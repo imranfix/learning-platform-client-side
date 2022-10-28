@@ -4,6 +4,7 @@ import CourseSummaryCard from '../Shared/CourseSummaryCard/CourseSummaryCard';
 
 const CourseCatagory = () => {
     const catagoryCourses = useLoaderData();
+
     return (
         <div className='card-grid'>
             {/* <h3>Courses : {catagoryCourses.length}</h3> */}

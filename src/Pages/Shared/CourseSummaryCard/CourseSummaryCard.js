@@ -14,7 +14,7 @@ const CourseSummaryCard = ({course}) => {
         <Card.Text>
           {
             details.length > 30 ? 
-            <p>{details.slice(0, 30) + '...'}<Link to={`/course/${_id}`}>Details more</Link> </p>
+            <p>{details.slice(0, 30) + '...'}<Link to={`/courseInfo/${_id}`}>Details more</Link> </p>
             :
             <p>{details}</p>
           }
@@ -24,7 +24,6 @@ const CourseSummaryCard = ({course}) => {
        {/* <Button variant="primary">Details</Button> */}
        <p className='px-2'>Price: {price}</p>
        <p className=''><small className='d-flex align-items-center mx-4'> {ratings} <FaRegStar></FaRegStar> <FaRegStar></FaRegStar> </small></p>
-      
        </div>
       </Card.Body>
     </Card> 
