@@ -7,8 +7,12 @@ import { FaConnectdevelop } from "react-icons/fa";
 import './Header.css';
 import { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
-import { Button, Image } from 'react-bootstrap';
-import {FaUser, FaMale} from 'react-icons/fa';
+import { Button, Image} from 'react-bootstrap';
+import {FaUser} from 'react-icons/fa';
+import BootstrapSwitchButton from 'bootstrap-switch-button-react';
+import Form from 'react-bootstrap/Form';
+
+
 
 
 
@@ -22,6 +26,9 @@ const Header = () => {
         .then( () =>{})
         .catch( error => console.error(error))
     }
+
+    // toggle button:
+
 
 
 
@@ -78,7 +85,13 @@ const Header = () => {
                <FaUser></FaUser>
             }
             </Link>
-      
+            <Form >
+            <Form.Check 
+              type="switch"
+              id="custom-switch"
+              label="Check this switch"
+          />
+      </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
