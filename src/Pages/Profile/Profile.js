@@ -12,7 +12,7 @@ const photoURLRef = useRef(user.photoURL);
 
 const handleSubmit = event =>{
     event.preventDefault();
-    console.log(photoURLRef.current.value);
+    console.log(photoURLRef);
 }
 
 const handleNameChange = event =>{

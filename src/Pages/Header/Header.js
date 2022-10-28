@@ -42,7 +42,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link className='m-3 text-white text-decoration-none' to="/courses">Courses</Link>
+            <Link className='m-3 text-white text-decoration-none' to="/">Courses</Link>
             <Link className='m-3 text-white text-decoration-none' to="/faq">FAQ</Link>
             <Link className='m-3 text-white text-decoration-none' to="/blog">Blog</Link>
             {/* <Link className='m-3 text-white text-decoration-none' to="/register">Register</Link>
@@ -75,7 +75,7 @@ const Header = () => {
 
               </Image>  
                :
-               <FaMale></FaMale>
+               <FaUser></FaUser>
             }
             </Link>
       

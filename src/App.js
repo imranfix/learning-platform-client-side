@@ -9,6 +9,7 @@ import FAQ from './Pages/FAQ/FAQ';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
+import TermsAndConditions from './Pages/Login/TermsAndConditions/TermsAndConditions';
 
 
 function App() {
@@ -59,6 +60,10 @@ function App() {
                </CourseInfo>,
                loader: ({params}) => fetch(`http://localhost:5000/news/${params.id}`)
               
+            },
+            {
+               path: '/terms',
+               element: <TermsAndConditions></TermsAndConditions>
             }
          ]
       }

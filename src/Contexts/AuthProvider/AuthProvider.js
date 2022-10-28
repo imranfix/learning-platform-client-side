@@ -12,13 +12,12 @@ const auth = getAuth(app);
 
 
 
-
 const AuthProvider = ({children}) => {
     const[user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
 // signIn Google:
-    const googleProvider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
 // password Authentification:
     const createUser = (email, password) =>{
@@ -28,6 +27,10 @@ const AuthProvider = ({children}) => {
 
     const providerLogin = (provider)=>{
         setLoading(true);
+        return signInWithPopup(auth, provider);
+    }
+
+    const githubLogin = (provider)=>{
         return signInWithPopup(auth, provider);
     }
   
@@ -65,10 +68,10 @@ const AuthProvider = ({children}) => {
         return signOut(auth);
     }
 
-    // useEffect why use?
+    // useEffect observer?
     useEffect( () =>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
-            console.log('user inside state change', currentUser);
+            console.log('user inside auth state change', currentUser);
             if(currentUser === null || currentUser.emailVerified){
                 setUser(currentUser)
 
@@ -82,7 +85,7 @@ const AuthProvider = ({children}) => {
     }, [])
 
 
-    const authInfo = {user, loading, createUser, signIn, logOut,verifyEmail, updateUserProfile, setLoading , signInWithGoogle, resetPassword}
+    const authInfo = {user, loading, createUser, providerLogin, signIn, logOut,verifyEmail, updateUserProfile, setLoading , signInWithGoogle, resetPassword, githubLogin}
 
 
 

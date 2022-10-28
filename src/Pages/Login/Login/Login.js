@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 
 
 
+
 const Login = () => {
 const [error, setError] = useState('');
 const [userEmail, setUserEmail] = useState('');
@@ -69,8 +70,6 @@ const handleSubmit = event =>{
       console.error(error);
     })
   }
-
-
 
 
 
