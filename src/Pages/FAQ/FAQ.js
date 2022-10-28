@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap';
 const FAQ = () => {
     return (
         <Card>
-        <Card.Header className='text-center fs-2'>Web Developer Career</Card.Header>
+        <Card.Header className='text-center fs-2 text-primary'>Web Developer Career</Card.Header>
         <Card.Body>
             <p>
                 <span className='fs-4'>Web Developer Career Path</span> <br /> <br />

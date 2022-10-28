@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 
@@ -10,11 +10,11 @@ import toast from 'react-hot-toast';
 
 
 
-
 const Login = () => {
 const [error, setError] = useState('');
+const [userEmail, setUserEmail] = useState('');
 
-const {signIn, setLoading} = useContext(AuthContext);
+const {signIn, setLoading, resetPassword} = useContext(AuthContext);
 const navigate = useNavigate();
 const location = useLocation();
 
@@ -50,6 +50,26 @@ const handleSubmit = event =>{
 
   }
 
+    const handleEmailBlur = event =>{
+      const email = event.target.value;
+      setUserEmail(email);
+      console.log(email)
+    }
+
+  const handleForgetPassword = () =>{
+    if(!userEmail){
+      alert('Please enter your email address.')
+      return;
+    }
+    resetPassword(userEmail)
+    .then( () =>{
+      alert('Password reset email sent. Please check your email')
+    })
+    .catch(error =>{
+      console.error(error);
+    })
+  }
+
 
 
 
@@ -61,7 +81,7 @@ const handleSubmit = event =>{
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control
+          <Form.Control onBlur={handleEmailBlur}
           name='email'
           type="email" placeholder="email address" required />
     
@@ -79,9 +99,11 @@ const handleSubmit = event =>{
         </Button>
         <Form.Text className='text-danger'>
          {error}
+         <p> New to this website? Please <Link to="/register">Register</Link></p>
+         <p>Forget Password? <Button variant='primary' type='button' onClick={handleForgetPassword}>Reset</Button></p>
         </Form.Text>
       </Form>
-       
+   
       </Card.Body>
     </Card>
     );
