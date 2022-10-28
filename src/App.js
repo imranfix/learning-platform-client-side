@@ -10,6 +10,7 @@ import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
 import TermsAndConditions from './Pages/Login/TermsAndConditions/TermsAndConditions';
+import PrivateRoute from './Routes/PrivateRoute.js/PrivateRoute';
 
 
 function App() {
@@ -56,8 +57,9 @@ function App() {
 
             {
                path: '/courseInfo/:id',
-               element: <CourseInfo>
-               </CourseInfo>,
+               element: <PrivateRoute>
+                           <CourseInfo></CourseInfo>
+                     </PrivateRoute>,
                loader: ({params}) => fetch(`http://localhost:5000/news/${params.id}`)
               
             },
