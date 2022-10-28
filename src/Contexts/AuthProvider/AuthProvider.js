@@ -30,7 +30,7 @@ const googleProvider = new GoogleAuthProvider();
         return signInWithPopup(auth, provider);
     }
     
-    // Github signIn:
+    // Github signIn:-
     const githubProvider = new GithubAuthProvider();
 
     const githubLogin = ()=>{
@@ -38,7 +38,7 @@ const googleProvider = new GoogleAuthProvider();
     }
   
 
-    // signIn auth:
+    // signIn auth:-
     const signIn = (email, password) =>{
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
@@ -89,7 +89,14 @@ const googleProvider = new GoogleAuthProvider();
     }, [])
 
 
-    const authInfo = {user, loading, createUser, providerLogin, signIn, logOut,verifyEmail, updateUserProfile, setLoading , signInWithGoogle, resetPassword, githubLogin}
+    const authInfo = {
+        user, loading,
+         createUser, providerLogin,
+          signIn, logOut,verifyEmail,
+           updateUserProfile, setLoading ,
+            signInWithGoogle, resetPassword,
+             githubLogin
+            }
 
 
 

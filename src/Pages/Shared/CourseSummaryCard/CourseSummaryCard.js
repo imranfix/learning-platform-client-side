@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { FaRegStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './CourseSummaryCard.css';

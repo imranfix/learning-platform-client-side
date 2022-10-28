@@ -24,7 +24,7 @@ function App() {
             {
                path: '/',
                element: <Home></Home>,
-               loader: () => fetch('http://localhost:5000/news')
+               loader: () => fetch('https://best-coding-server.vercel.app/news')
 
             },
 
@@ -52,7 +52,7 @@ function App() {
             {
                path: '/course/:id',
                element: <CourseCatagory></CourseCatagory>,
-               loader: ({params}) => fetch(`http://localhost:5000/catagory/${params.id}`)
+               loader: ({params}) => fetch(`https://best-coding-server.vercel.app/catagory/${params.id}`)
             },
 
             {
@@ -60,7 +60,7 @@ function App() {
                element: <PrivateRoute>
                            <CourseInfo></CourseInfo>
                      </PrivateRoute>,
-               loader: ({params}) => fetch(`http://localhost:5000/news/${params.id}`)
+               loader: ({params}) => fetch(`https://best-coding-server.vercel.app/news/${params.id}`)
               
             },
             {
@@ -68,7 +68,14 @@ function App() {
                element: <TermsAndConditions></TermsAndConditions>
             }
          ]
-      }
+      },
+
+      {
+         path: '*', element: <div className='text-center mt-5'><h1> <span>Sorry!!</span> This route is not Found
+         <br />
+         <><span className='fw-bold text-secondary mt-3'>404</span></>
+         </h1></div>
+       }
    ])
 
 

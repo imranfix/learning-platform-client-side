@@ -13,7 +13,7 @@ const LeftSide = () => {
     const {providerLogin, githubLogin} = useContext(AuthContext);
 
 useEffect( () =>{
-    fetch('http://localhost:5000/news-courses')
+    fetch('https://best-coding-server.vercel.app/news-courses')
     .then(res => res.json())
     .then(data => setCourses(data))
 }, [])
@@ -42,7 +42,7 @@ const handleGithubSignIn = ()=>{
 
     return (
         <div>
-           <h5>All Course: {courses.length}</h5> 
+           <h5>Programming Course: {courses.length}</h5> 
            <div>
                 {
                     courses.map(course => <p key={course.id}>
